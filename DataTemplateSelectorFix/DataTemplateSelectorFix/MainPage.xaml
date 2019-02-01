@@ -3,12 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DataTemplateSelectorFix"
              x:Class="DataTemplateSelectorFix.MainPage">
-
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>
-
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:MyDataTemplateSelector x:Key="MyItemTemplateSelector">
+                <local:MyDataTemplateSelector.OddTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding }" 
+                               TextColor="Red"/>
+                    </DataTemplate>
+                </local:MyDataTemplateSelector.OddTemplate>
+                <local:MyDataTemplateSelector.EvenTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding }" 
+                               TextColor="Green"/>
+                    </DataTemplate>
+                </local:MyDataTemplateSelector.EvenTemplate>
+            </local:MyDataTemplateSelector>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <local:MyView ItemTemplateSelector="{StaticResource MyItemTemplateSelector}"
+                  VerticalOptions="Center"
+                  HorizontalOptions="Center"/>
 </ContentPage>
